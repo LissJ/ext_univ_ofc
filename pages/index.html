@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="title">Desafio Identifique o Link!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar estilo Gmail -->
+        <aside class="sidebar">
+            <div class="logo">
+                <svg viewBox="0 0 24 24" width="32" height="32">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 3.87 3.13 7 7 7s7-3.13 7-7c0-3.87-3.13-7-7-7z" fill="#4CAF50" />
+                </svg>
+                <span>Smail</span>
+            </div>
+            <nav class="menu">
+                <button class="menu-item active">
+                    <span class="icon">📥</span><span data-i18n="inbox">Inbox</span>
+                </button>
+                <a href="pratique.html">
+                    <button class="menu-item">
+                        <span class="icon">🏋️</span><span data-i18n="practice">Pratique!</span>
+                    </button>
+                </a>
+                <a href="saiba.html">
+                    <button class="menu-item">
+                        <span class="icon">ℹ️</span><span data-i18n="learnMore">Saiba mais</span>
+                    </button>
+                </a>
+                <button class="menu-item">
+                    <span class="icon">🌐</span><span data-i18n="language">Idioma</span>
+                </button>
+                <button class="menu-item">
+                    <span class="icon">🎨</span><span data-i18n="theme">Tema</span>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo principal -->
+        <main class="main-content">
+            <!-- Barra de busca -->
+            <header class="topbar">
+                <input type="search" placeholder="" id="searchInput" data-i18n-placeholder="searchPlaceholder" />
+            </header>
+            <!-- Lista de emails -->
+            <section class="email-list" id="emailList"></section>
+            <!-- Medidor de pegada -->
+            <footer class="footer">
+                <div class="barra">
+                    <div class="carbon-meter">
+                        <div class="meter-fill" id="carbonMeter"></div>
+
+                    </div>
+                    <img class="leaf" src="assets/leaf_icon.png" alt="">
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
