@@ -207,15 +207,13 @@ a {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-20%, -20%);
     background-color: rgba(255, 0, 0, 0.8);
     /* Fundo vermelho semi-transparente */
-    border: 5px solid #FF5722;
     /* Borda mais chamativa */
     z-index: 9999;
     text-align: center;
-    padding: 10px;
-    animation: shake 1s infinite;
+    animation: pulse 1s infinite;
     /* Efeito de shake */
 }
 
@@ -226,25 +224,8 @@ a {
     /* Para garantir que a imagem ocupe toda a área */
 }
 
-/* Animação de shake para o pop-up */
-@keyframes shake {
-    0% {
-        transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    }
-
-    25% {
-        transform: translateX(-50%) translateY(-50%) rotate(5deg);
-    }
-
-    50% {
-        transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    }
-
-    75% {
-        transform: translateX(-50%) translateY(-50%) rotate(-5deg);
-    }
-
-    100% {
-        transform: translateX(-50%) translateY(-50%) rotate(0deg);
-    }
-}
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
