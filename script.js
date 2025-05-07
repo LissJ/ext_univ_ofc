@@ -1,101 +1,140 @@
-let currentLanguage = 'pt';
 let carbonLevel = 0;
 const maxCarbon = 100;
 const carbonBar = document.getElementById("carbonMeter");
 const emailList = document.getElementById("emailList");
+
 let questions = [
   {
-    pt: {
-      question: "Qual destas práticas ajuda a reduzir a pegada de carbono digital?",
-      options: [
-        "Desligar o computador quando não estiver usando",
-        "Deixar vídeos em autoplay",
-        "Manter 50 abas abertas",
-        "Assistir vídeos em 4K no celular"
-      ]
-    },
-    en: {
-      question: "Which of these reduces digital carbon footprint?",
-      options: [
-        "Turning off the computer when not in use",
-        "Letting videos autoplay",
-        "Keeping 50 tabs open",
-        "Watching 4K videos on your phone"
-      ]
-    },
+    question: "Qual destas práticas ajuda a reduzir a pegada de carbono digital?",
+    options: [
+      "Desligar o computador quando não estiver usando",
+      "Deixar vídeos em autoplay",
+      "Manter 50 abas abertas",
+      "Assistir vídeos em 4K no celular"
+    ],
     correct: 0
   },
   {
-    pt: {
-      question: "Qual prática melhora a segurança no mundo digital?",
-      options: [
-        "Usar a mesma senha em todos os sites",
-        "Compartilhar senhas por e-mail",
-        "Ativar autenticação de dois fatores",
-        "Desligar o antivírus"
-      ]
-    },
-    en: {
-      question: "What improves digital security?",
-      options: [
-        "Using the same password everywhere",
-        "Sharing passwords via email",
-        "Enabling two-factor authentication",
-        "Turning off antivirus"
-      ]
-    },
+    question: "Qual prática melhora a segurança no mundo digital?",
+    options: [
+      "Usar a mesma senha em todos os sites",
+      "Compartilhar senhas por e-mail",
+      "Ativar autenticação de dois fatores",
+      "Desligar o antivírus"
+    ],
     correct: 2
   },
   {
-    pt: {
-      question: "Qual ação reduz o impacto ambiental de e-mails?",
-      options: [
-        "Enviar e-mails com anexos grandes",
-        "Excluir e-mails antigos regularmente",
-        "Manter lixo eletrônico cheio",
-        "Enviar mensagens para todos os contatos sempre"
-      ]
-    },
-    en: {
-      question: "What action reduces email carbon footprint?",
-      options: [
-        "Sending large attachments",
-        "Deleting old emails regularly",
-        "Keeping trash folder full",
-        "Always mass mailing all contacts"
-      ]
-    },
+    question: "Qual ação reduz o impacto ambiental de e-mails?",
+    options: [
+      "Enviar e-mails com anexos grandes",
+      "Excluir e-mails antigos regularmente",
+      "Manter lixo eletrônico cheio",
+      "Enviar mensagens para todos os contatos sempre"
+    ],
     correct: 1
   }
 ];
 
-// Lista de GIFs para os popups maliciosos
 const maliciousGifs = [
   "../assets/gifs/hack1.gif",
 ];
 
-// Lista de e-mails suspeitos reais
 const emailQueue = [
-  { title: "Promoção exclusiva da Amazon!", snippet: "Clique aqui para resgatar seu prêmio!", isSafe: false },
-  { title: "Alerta do banco", snippet: "Sua conta será bloqueada. Atualize seus dados.", isSafe: false },
-  { title: "Nova mensagem de voz", snippet: "Você recebeu uma nova mensagem. Acesse o link.", isSafe: false },
-  { title: "Netflix: pagamento recusado", snippet: "Atualize seu cartão agora mesmo.", isSafe: false },
-  { title: "Ganhe um iPhone grátis!", snippet: "Responda 3 perguntas e ganhe!", isSafe: false },
-  { title: "Reembolso da Receita Federal", snippet: "Clique para receber seu reembolso.", isSafe: false },
-  { title: "Whatsapp Gold disponível", snippet: "Versão exclusiva liberada para você.", isSafe: false },
-  { title: "Instagram te pagará por seguidores", snippet: "Inscreva-se agora.", isSafe: false },
-  { title: "Seu CPF está irregular", snippet: "Acesse para regularizar.", isSafe: false },
-  { title: "Sua senha foi exposta", snippet: "Troque imediatamente por segurança.", isSafe: false },
-  { title: "Seu dispositivo está com vírus", snippet: "Escaneie agora.", isSafe: false },
-  { title: "Atualização de segurança", snippet: "Clique para instalar a última versão.", isSafe: false },
-  { title: "Nova solicitação de amizade", snippet: "Veja quem te adicionou.", isSafe: false },
-  { title: "Você foi sorteado!", snippet: "Receba agora sua premiação!", isSafe: false },
-  { title: "Confirme sua identidade", snippet: "Clique no link para continuar usando sua conta.", isSafe: false },
+  {
+    title: "Promoção exclusiva da Amazon!",
+    from: "oferta@amazon.com",
+    body: "Aproveite nossa super promoção! Ganhe 50% de desconto em sua próxima compra. Não perca essa oportunidade.",
+    isSafe: false
+  },
+  {
+    title: "Alerta do banco",
+    from: "alerta@banco.com",
+    body: "Sua conta será bloqueada devido a tentativas suspeitas. Atualize seus dados bancários imediatamente para evitar bloqueio.",
+    isSafe: false
+  },
+  {
+    title: "Nova mensagem de voz",
+    from: "voz@mensagens.com",
+    body: "Você recebeu uma nova mensagem de voz. Acesse o link abaixo para ouvir o áudio.",
+    isSafe: false
+  },
+  {
+    title: "Netflix: pagamento recusado",
+    from: "suporte@netflix.com",
+    body: "O pagamento do seu plano foi recusado. Atualize seus dados de pagamento agora para continuar acessando os conteúdos.",
+    isSafe: false
+  },
+  {
+    title: "Ganhe um iPhone grátis!",
+    from: "oferta@apple.com",
+    body: "Responda a 3 perguntas e tenha a chance de ganhar um iPhone! Não deixe essa oportunidade passar.",
+    isSafe: false
+  },
+  {
+    title: "Reembolso da Receita Federal",
+    from: "receita@gov.br",
+    body: "Clique no link abaixo para receber o seu reembolso da Receita Federal. Não perca tempo!",
+    isSafe: false
+  },
+  {
+    title: "Whatsapp Gold disponível",
+    from: "oferta@whatsapp.com",
+    body: "Versão exclusiva do WhatsApp liberada para você! Instale agora e tenha recursos inéditos.",
+    isSafe: false
+  },
+  {
+    title: "Instagram te pagará por seguidores",
+    from: "suporte@instagram.com",
+    body: "Ganhe dinheiro seguindo outras pessoas no Instagram! Aproveite esta oportunidade exclusiva.",
+    isSafe: false
+  },
+  {
+    title: "Seu CPF está irregular",
+    from: "atendimento@serpro.com.br",
+    body: "Atenção: seu CPF está irregular. Acesse para regularizar sua situação e evitar problemas futuros.",
+    isSafe: false
+  },
+  {
+    title: "Sua senha foi exposta",
+    from: "seguranca@sites.com",
+    body: "Alerta: sua senha foi exposta em um vazamento de dados. Troque imediatamente sua senha para manter sua conta segura.",
+    isSafe: false
+  },
+  {
+    title: "Seu dispositivo está com vírus",
+    from: "suporte@antivirus.com",
+    body: "Seu dispositivo foi infectado por um vírus. Faça o scan agora para garantir a segurança do seu sistema.",
+    isSafe: false
+  },
+  {
+    title: "Atualização de segurança",
+    from: "suporte@software.com",
+    body: "Uma nova atualização de segurança está disponível para o seu dispositivo. Instale agora para garantir a proteção.",
+    isSafe: false
+  },
+  {
+    title: "Nova solicitação de amizade",
+    from: "social@facebook.com",
+    body: "Você tem uma nova solicitação de amizade no Facebook. Clique no link abaixo para visualizar.",
+    isSafe: false
+  },
+  {
+    title: "Você foi sorteado!",
+    from: "promo@concursos.com",
+    body: "Parabéns! Você foi sorteado para ganhar um prêmio incrível. Clique para resgatar agora.",
+    isSafe: false
+  },
+  {
+    title: "Confirme sua identidade",
+    from: "suporte@conta.com",
+    body: "Confirme sua identidade para continuar usando sua conta. Acesse o link abaixo para completar a verificação.",
+    isSafe: false
+  }
 ];
 
 let emailIndex = 0;
 
-// Função central de erro: exibe pop-up e quiz
 function handleUserError() {
   gerarPopUpMalicioso();
   showQuizModal();
@@ -107,7 +146,6 @@ function reiniciarJogo() {
   location.reload();
 }
 
-// Pop-up malicioso
 function gerarPopUpMalicioso() {
   const popup = document.createElement("div");
   popup.className = "popup";
@@ -129,24 +167,21 @@ function gerarPopUpMalicioso() {
   document.body.appendChild(popup);
 }
 
-// Modal de quiz com destaque de resposta e fechamento automático
+const modal = document.createElement("div");
+modal.className = "quiz-modal";
+
 function showQuizModal() {
   if (!questions.length) return console.error('Perguntas não disponíveis');
 
   const questionObj = questions[Math.floor(Math.random() * questions.length)];
-  const data = questionObj[currentLanguage];
-  if (!data) return console.error('Idioma não encontrado na pergunta');
 
-  const modal = document.createElement("div");
-  modal.className = "quiz-modal";
-
-  const opts = data.options.map((opt, idx) =>
+  const opts = questionObj.options.map((opt, idx) =>
     `<button data-index="${idx}">${opt}</button>`
   ).join("");
 
   modal.innerHTML = `
     <div class="modal-content">
-      <p>${data.question}</p>
+      <p>${questionObj.question}</p>
       ${opts}
     </div>
   `;
@@ -171,27 +206,24 @@ function showQuizModal() {
         updateCarbon(5);
       } else {
         updateCarbon(-5);
-      
-        // Remove um popup GIF se existir
+
         const popups = document.querySelectorAll(".popup");
         if (popups.length > 0) {
           popups[0].remove();
         }
       }
-      
+
       setTimeout(() => {
         modal.remove();
         if (selected === correct) nextEmail();
       }, 2000);
-      
     });
   });
 
   document.body.appendChild(modal);
 }
 
-// Geração de e-mail da fila
-function generateEmail(title, snippet, isSafe = true) {
+function generateEmail(title, snippet, isSafe = true, from = 'unknown@domain.com') {
   const emailItem = document.createElement("div");
   emailItem.className = "email-item";
   emailItem.innerHTML = `
@@ -207,43 +239,112 @@ function generateEmail(title, snippet, isSafe = true) {
   `;
 
   const [yesBtn, noBtn] = emailItem.querySelectorAll('button');
+  let tentativa = 1;
 
-  yesBtn.addEventListener('click', () => {
-    if (isSafe) {
+  const disableButtons = () => {
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+  };
+
+  const handleResposta = (acertou) => {
+    if (acertou) {
       updateCarbon(-10);
       nextEmail();
     } else {
-      updateCarbon(10);
-      handleUserError();
+      if (tentativa === 1) {
+        tentativa++;
+        handleUserError(); // mostra pop-up e quiz
+      } else {
+        updateCarbon(10);
+        nextEmail();
+      }
     }
+  };
+
+  // Flag para impedir o clique no e-mail quando o cadeado for ativado
+  let isLocked = false;
+
+  yesBtn.addEventListener('click', () => {
+    if (yesBtn.disabled) return;
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+    handleResposta(isSafe);
   });
 
   noBtn.addEventListener('click', () => {
-    if (!isSafe) {
-      updateCarbon(-10);
-      nextEmail();
-    } else {
-      updateCarbon(10);
-      handleUserError();
-    }
+    if (noBtn.disabled) return;
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+    handleResposta(!isSafe);
+    isLocked = true; // Ativa a flag de bloqueio
+    emailItem.style.pointerEvents = 'none'; // Desativa o clique no e-mail
+  });
+
+  emailItem.addEventListener("click", () => {
+    if (isLocked) return; // Se estiver bloqueado, não faz nada
+    showEmailDetail({ title, snippet, isSafe, from });
   });
 
   emailList.appendChild(emailItem);
 }
 
-// Função para mostrar próximo e-mail da fila
+function showEmailDetail(email) {
+  // Esconde a lista de e-mails e o rodapé
+  document.querySelector(".email-list").style.display = "none";
+  document.querySelector(".footer").style.display = "none";
+
+  // Criação da nova tela de detalhes
+  const detail = document.createElement("div");
+  detail.id = "emailDetailView";
+  detail.style.padding = "20px";
+  detail.innerHTML = `
+    <h2>${email.title}</h2>
+    <p><strong>Remetente:</strong> ${email.from}</p> <!-- Remetente aparece aqui -->
+    <p style="margin-top: 10px; font-size: 16px;">${email.snippet}</p> <!-- Exibe o snippet do corpo -->
+    <div style="margin-top: 20px;">
+      <button id="voltarBtn">🔙 Voltar</button>
+      <button id="btnSim">🔓 Abrir</button>
+      <button id="btnNao">🔒 Bloquear</button>
+    </div>
+  `;
+
+  // Adiciona o conteúdo à página
+  document.querySelector(".main-content").appendChild(detail);
+
+  // Função para voltar à lista de e-mails
+  document.getElementById("voltarBtn").addEventListener("click", () => {
+    detail.remove();
+    document.querySelector(".email-list").style.display = "block";
+    document.querySelector(".footer").style.display = "flex";
+  });
+
+  // Função para lidar com as respostas do usuário
+  document.getElementById("btnSim").addEventListener("click", () => {
+    detail.remove();
+    document.querySelector(".email-list").style.display = "block";
+    document.querySelector(".footer").style.display = "flex";
+    handleResposta(email.isSafe);
+  });
+
+  document.getElementById("btnNao").addEventListener("click", () => {
+    detail.remove();
+    document.querySelector(".email-list").style.display = "block";
+    document.querySelector(".footer").style.display = "flex";
+    handleResposta(!email.isSafe);
+  });
+}
+
 function nextEmail() {
   if (emailIndex >= emailQueue.length) {
     alert("📬 Todos os e-mails foram processados!");
     return;
   }
 
-  const { title, snippet, isSafe } = emailQueue[emailIndex];
-  generateEmail(title, snippet, isSafe);
+  const emailData = emailQueue[emailIndex];
+  generateEmail(emailData.title, emailData.body, emailData.isSafe, emailData.from);
   emailIndex++;
 }
 
-// Atualiza medidor de carbono
 function updateCarbon(delta) {
   carbonLevel = Math.min(maxCarbon, Math.max(0, carbonLevel + delta));
   carbonBar.style.width = `${carbonLevel}%`;
@@ -253,15 +354,13 @@ function updateCarbon(delta) {
   }
 }
 
-// Começa com o primeiro e-mail
 nextEmail();
 
-// Estilos
 const style = document.createElement('style');
 style.innerHTML = `
   .popup {
     position: fixed;
-    z-index: 9999; /* GIFs */
+    z-index: 9999;
     width: 200px;
     height: 200px;
     background: #fff;
@@ -274,7 +373,7 @@ style.innerHTML = `
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10000; /* Maior que os GIFs */
+    z-index: 10000;
   }
   .modal-content {
     background: #fff;
@@ -290,5 +389,4 @@ style.innerHTML = `
     cursor: pointer;
   }
 `;
-
 document.head.appendChild(style);

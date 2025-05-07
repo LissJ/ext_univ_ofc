@@ -13,9 +13,7 @@
         <!-- Sidebar estilo Gmail -->
         <aside class="sidebar">
             <div class="logo">
-                <svg viewBox="0 0 24 24" width="32" height="32">
-                    <path d="M12 2C8.13 2 5 5.13 5 9c0 3.87 3.13 7 7 7s7-3.13 7-7c0-3.87-3.13-7-7-7z" fill="#4CAF50" />
-                </svg>
+                <img class="leaf" src="../assets/leaf_icon.png" alt="">
                 <span>Smail</span>
             </div>
             <nav class="menu">
@@ -49,9 +47,19 @@
             </header>
             <!-- Lista de emails -->
             <section class="email-list" id="emailList"></section>
+            <section id="emailDetail" class="email-detail" style="display: none;"></section>
+
+            <!-- Modal para finalização do jogo -->
+            <div id="gameOverModal" class="quiz-modal" style="display: none;">
+                <div class="modal-content">
+                    <p id="final-score">Sua Pontuação: 0</p>
+                    <button id="restartButton">Reiniciar</button>
+                    <button id="closeModalButton">Fechar</button>
+                </div>
+            </div>
             <!-- Medidor de pegada -->
             <footer class="footer">
-                <button id="restartBtn" class="restart-button">🔁 Reiniciar</button>
+                <button id="restartBtn" class="restart-button">Reiniciar</button>
                 <div class="barra">
                     <div class="carbon-meter">
                         <div class="meter-fill" id="carbonMeter"></div>
