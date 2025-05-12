@@ -29,6 +29,8 @@ body {
 .app-container {
     display: flex;
     height: 100vh;
+    width: 100%;
+    flex-direction: row;
 }
 
 /* Sidebar */
@@ -49,7 +51,6 @@ body {
 
 .logo span {
     font-size: 1.25rem;
-    /* font-weight: bold; */
     color: #000;
 }
 
@@ -103,7 +104,6 @@ body {
     flex: 1;
     overflow-y: auto;
     padding: 0 16px 16px;
-    ;
 }
 
 .email-item {
@@ -112,18 +112,17 @@ body {
     justify-content: space-between;
     padding: 19px 8px;
     border-bottom: 1px solid var(--blue-line);
+    flex-wrap: wrap;
 }
 
 .email-item .info {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* espaço entre título e snippet */
 }
 
 .email-item .title {
     width: 335px;
-    /* define um espaço fixo para todos os títulos */
     font-weight: bold;
     flex-shrink: 0;
     white-space: nowrap;
@@ -171,9 +170,7 @@ body {
     color: var(--gray);
     margin-left: 16px;
     min-width: 80px;
-    /* Largura mínima para garantir que o horário ocupe sempre o mesmo espaço */
     text-align: right;
-    /* Alinha o horário à direita */
 }
 
 /* Footer / Carbon Meter */
@@ -183,6 +180,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .carbon-meter {
@@ -231,19 +229,15 @@ a {
     left: 50%;
     transform: translate(-20%, -20%);
     background-color: rgba(255, 0, 0, 0.8);
-    /* Fundo vermelho semi-transparente */
-    /* Borda mais chamativa */
     z-index: 9999;
     text-align: center;
     animation: pulse 1s infinite;
-    /* Efeito de shake */
 }
 
 .popup img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* Para garantir que a imagem ocupe toda a área */
 }
 
 @keyframes pulse {
@@ -291,4 +285,82 @@ a {
     background: none;
     border: none;
     font-size: 18px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--blue-line);
+    }
+
+    .menu-item {
+        padding: 12px 20px;
+    }
+
+    .main-content {
+        padding: 0 10px;
+    }
+
+    .email-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .email-item .title {
+        width: 100%;
+    }
+
+    .email-item .time {
+        margin-left: 0;
+        text-align: left;
+        margin-top: 8px;
+    }
+
+    .popup {
+        width: 150px;
+        height: 150px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 12px;
+    }
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .sidebar {
+        display: none;
+        position: absolute;
+        top: 60px; /* abaixo da topbar */
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    .sidebar.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .app-container {
+        flex-direction: column;
+    }
 }

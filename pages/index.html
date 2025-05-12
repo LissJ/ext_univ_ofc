@@ -17,24 +17,45 @@
                 <span>Smail</span>
             </div>
             <nav class="menu">
-                <button class="menu-item active">
-                    <span class="icon">📥</span><span data-i18n="inbox">Inbox</span>
-                </button>
+                <a href="index.html">
+                    <button class="menu-item active">
+                        <span class="icon">
+                            <img src="../assets/inbox.png" alt="Inbox Icon" width="16" height="16">
+                        </span>
+                        <span class="item-menu" data-i18n="inbox">Inbox</span>
+                    </button>
+                </a>
+
                 <a href="pratique.html">
                     <button class="menu-item">
-                        <span class="icon">🏋️</span><span data-i18n="practice">Pratique!</span>
+                        <span class="icon">
+                            <img src="../assets/practice.png" alt="Pratique Icon" width="16" height="16">
+                        </span>
+                        <span class="item-menu" data-i18n="practice">Pratique!</span>
                     </button>
                 </a>
+
                 <a href="saiba.html">
                     <button class="menu-item">
-                        <span class="icon">ℹ️</span><span data-i18n="learnMore">Saiba mais</span>
+                        <span class="icon">
+                            <img src="../assets/know_more.png" alt="Learn More Icon" width="17" height="17">
+                        </span>
+                        <span class="item-menu" data-i18n="learnMore">Saiba mais</span>
                     </button>
                 </a>
+
                 <button class="menu-item">
-                    <span class="icon">🌐</span><span data-i18n="language">Idioma</span>
+                    <span class="icon">
+                        <img src="../assets/language.png" alt="Idioma Icon" width="16" height="16">
+                    </span>
+                    <span class="item-menu" data-i18n="language">Idioma</span>
                 </button>
+
                 <button class="menu-item">
-                    <span class="icon">🎨</span><span data-i18n="theme">Tema</span>
+                    <span class="icon">
+                        <img src="../assets/dark_light_mode.png" alt="Tema Icon" width="16" height="16">
+                    </span>
+                    <span class="item-menu" data-i18n="theme">Tema</span>
                 </button>
             </nav>
         </aside>
@@ -43,6 +64,8 @@
         <main class="main-content">
             <!-- Barra de busca -->
             <header class="topbar">
+                <button class="hamburger" onclick="toggleSidebar()">☰</button>
+
                 <input type="search" placeholder="" id="searchInput" data-i18n-placeholder="searchPlaceholder" />
             </header>
             <!-- Lista de emails -->
@@ -70,6 +93,12 @@
             </footer>
         </main>
     </div>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>    
     <script src="../script.js"></script>
 </body>
 

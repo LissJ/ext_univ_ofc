@@ -303,8 +303,10 @@ function showEmailDetail(email) {
     <p style="margin-top: 10px; font-size: 16px;">${email.snippet}</p> <!-- Exibe o snippet do corpo -->
     <div style="margin-top: 20px;">
       <button id="voltarBtn">🔙 Voltar</button>
-      <button id="btnSim">🔓 Abrir</button>
-      <button id="btnNao">🔒 Bloquear</button>
+      <div class="actions">
+        <button class="btn-yes">🔓</button>
+        <button class="btn-no">🔒</button>
+    </div>
     </div>
   `;
 
