@@ -228,14 +228,17 @@ function generateEmail(title, snippet, isSafe = true, from = 'unknown@domain.com
   emailItem.className = "email-item";
   emailItem.innerHTML = `
     <div class="info">
-      <div class="title">${title}</div>
-      <div class="snippet">${snippet}</div>
-    </div>
+    <div class="title">${title}</div>
+    <div class="snippet">${snippet}</div>
+  </div>
+
+  <div class="bottom-row">
     <div class="actions">
-      <button class="btn-yes">🔓</button>
-      <button class="btn-no">🔒</button>
+      <button class="green-btn">🔓</button>
+      <button class="red-btn">🔒</button>
     </div>
-    <div class="time">${new Date().toLocaleTimeString()}</div>
+    <div class="time">10:45</div>
+  </div>
   `;
 
   const [yesBtn, noBtn] = emailItem.querySelectorAll('button');

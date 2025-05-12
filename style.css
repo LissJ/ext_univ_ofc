@@ -117,8 +117,9 @@ body {
 
 .email-item .info {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column; /* empilha título e snippet */
+    align-items: flex-start;
+    gap: 4px;
 }
 
 .email-item .title {
@@ -147,7 +148,9 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-wrap: wrap; /* permite quebrar linha */
     margin-left: auto;
+    max-width: 100%;
 }
 
 .email-item .actions button {
@@ -362,5 +365,47 @@ a {
 
     .app-container {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 768px) {
+    .email-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .email-item .info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .email-item .title {
+        width: 100%;
+    }
+
+    .email-item .snippet {
+        width: 100%;
+    }
+
+    .email-item .actions {
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .email-item .time {
+        margin: 0;
+        margin-left: auto;
+    }
+
+    /* Envolve ações e hora num contêiner para alinhar lado a lado */
+    .email-item .bottom-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-top: 8px;
     }
 }
