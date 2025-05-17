@@ -1,0 +1,124 @@
+@import url('sidebar.css');
+
+@font-face {
+    font-family: 'Poppins';
+    src: url(../assets/fonts/Poppins-Regular.ttf);
+}
+
+:root {
+    --font-regular: 'Poppins', 'Arial', sans-serif;
+}
+
+.main-content {
+    padding: 60px 30px;
+    font-family: var(--font-regular);
+    color: #333;
+    background-color: #fff;
+    max-width: 1300px;
+    /* margin: 0 auto; */
+}
+
+.main-content h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #0A79B8;
+}
+
+.info-section {
+    margin-bottom: 32px;
+}
+
+.info-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #0A79B8;
+}
+
+.info-section p {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.info-section ul {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+.info-section li {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.menu-item {
+    background: none;
+    border: none;
+    padding: 16px 55px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    transition: background 0.2s;
+}
+
+.menu-toggle {
+    display: none;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 1100;
+    background: #87c3e5;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 220px;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 1.4rem;
+    }
+
+    .sidebar .logo img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .menu-item {
+        padding: 12px 20px;
+    }
+
+    .menu-item .item-menu {
+        display: inline-block;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+}

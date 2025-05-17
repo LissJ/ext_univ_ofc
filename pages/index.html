@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +11,9 @@
 
 <body>
     <div class="app-container">
+        <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+            ☰
+        </button>
         <!-- Sidebar estilo Gmail -->
         <aside class="sidebar">
             <div class="logo">
@@ -44,20 +47,6 @@
                         <span class="item-menu" data-i18n="learnMore">Saiba mais</span>
                     </button>
                 </a>
-
-                <button class="menu-item">
-                    <span class="icon">
-                        <img src="assets/language.png" alt="Idioma Icon" width="16" height="16">
-                    </span>
-                    <span class="item-menu" data-i18n="language">Idioma</span>
-                </button>
-
-                <button class="menu-item">
-                    <span class="icon">
-                        <img src="assets/dark_light_mode.png" alt="Tema Icon" width="16" height="16">
-                    </span>
-                    <span class="item-menu" data-i18n="theme">Tema</span>
-                </button>
             </nav>
         </aside>
 
@@ -65,8 +54,6 @@
         <main class="main-content">
             <!-- Barra de busca -->
             <header class="topbar">
-                <button class="hamburger" onclick="toggleSidebar()">☰</button>
-
                 <input type="search" placeholder="" id="searchInput" data-i18n-placeholder="searchPlaceholder" />
             </header>
             <!-- Lista de emails -->
