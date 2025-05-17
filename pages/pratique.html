@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title data-i18n="title">Desafio Identifique o Link!</title>
-    <link rel="stylesheet" href="css/pratique.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="title">Smail | Quiz!</title>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
@@ -16,14 +16,14 @@
     <div class="app-container">
         <aside class="sidebar">
             <div class="logo">
-                <img class="leaf" src="./assets/leaf_icon.png" alt="">
+                <img class="leaf" src="assets/leaf_icon.png" alt="">
                 <span>Smail</span>
             </div>
             <nav class="menu">
                 <a href="index.html">
                     <button class="menu-item">
                         <span class="icon">
-                            <img src="./assets/inbox.png" alt="Inbox Icon" width="16" height="16">
+                            <img src="assets/inbox.png" alt="Inbox Icon" width="16" height="16">
                         </span>
                         <span class="item-menu" data-i18n="inbox">Inbox</span>
                     </button>
@@ -32,7 +32,7 @@
                 <a href="pratique.html">
                     <button class="menu-item active">
                         <span class="icon">
-                            <img src="./assets/practice.png" alt="Pratique Icon" width="16" height="16">
+                            <img src="assets/practice.png" alt="Pratique Icon" width="16" height="16">
                         </span>
                         <span class="item-menu" data-i18n="practice">Pratique!</span>
                     </button>
@@ -41,43 +41,37 @@
                 <a href="saiba.html">
                     <button class="menu-item">
                         <span class="icon">
-                            <img src="./assets/know_more.png" alt="Learn More Icon" width="17" height="17">
+                            <img src="assets/know_more.png" alt="Learn More Icon" width="17" height="17">
                         </span>
                         <span class="item-menu" data-i18n="learnMore">Saiba mais</span>
                     </button>
                 </a>
+
+                <button class="menu-item">
+                    <span class="icon">
+                        <img src="assets/language.png" alt="Idioma Icon" width="16" height="16">
+                    </span>
+                    <span class="item-menu" data-i18n="language">Idioma</span>
+                </button>
+
+                <button class="menu-item">
+                    <span class="icon">
+                        <img src="assets/dark_light_mode.png" alt="Tema Icon" width="16" height="16">
+                    </span>
+                    <span class="item-menu" data-i18n="theme">Tema</span>
+                </button>
             </nav>
         </aside>
 
-        <main class="main-content">
-
-            <section class="email-list" id="quizArea">
-                <div class="difficulty-selector">
-                    <h2>Quiz de boas práticas</h2>
-                    <p>Selecione o nível de desafio:</p>
-                    <div class="difficulty-options">
-                        <button id="easy" class="difficulty-btn">Fácil</button>
-                        <button id="medium" class="difficulty-btn">Médio</button>
-                        <button id="hard" class="difficulty-btn">Difícil</button>
-                    </div>
-                </div>
-
-                <div id="quizContainer" class="quiz-container"></div>
-            </section>
-
-            <footer class="footer">
-                <div class="barra">
-                    <div class="carbon-meter">
-                        <div class="meter-fill" id="carbonMeter"></div>
-                    </div>
-                    <img class="leaf" src="assets/leaf_icon.png" alt="">
-                </div>
-            </footer>
-
-        </main>
+        
     </div>
-
-    <script src="scripts/pratique.js"></script>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>    
+    <script src="./scripts/script.js"></script>
 </body>
 
 </html>
