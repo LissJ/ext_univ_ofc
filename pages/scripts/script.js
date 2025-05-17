@@ -147,21 +147,39 @@ function reiniciarJogo() {
 }
 
 function gerarPopUpMalicioso() {
+  let modalQuiz = document.getElementById("modal-quiz");
+  const rect = modalQuiz.getBoundingClientRect();
+
+  let popupSize = 200;
+
   const popup = document.createElement("div");
   popup.className = "popup";
   const gif = document.createElement("img");
 
   const randomIndex = Math.floor(Math.random() * maliciousGifs.length);
+
   gif.src = maliciousGifs[randomIndex];
   popup.appendChild(gif);
 
   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
   const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
-  const randX = Math.floor(Math.random() * (vw - 300));
-  const randY = Math.floor(Math.random() * (vh - 200));
+
+  let randX = Math.floor(Math.random() * (vw - 200));
+  let randY = Math.floor(Math.random() * (vh - 200));
+
+  if ((vw - rect.width) > (popupSize * 2)) {
+    if ((randX > rect.left || randX + popupSize > rect.left) && (randX < (rect.left + rect.width) || randX + popupSize < (rect.left + rect.width))) {
+      randX = rect.left + rect.width + 10;
+    }
+  } else {
+    if ((randY > rect.top || randY + popupSize > rect.top) && (randY < (rect.top + rect.height) || randY + popupSize < (rect.top + rect.height))) {
+      randY = rect.top + rect.height + 10;
+    }
+  }
 
   popup.style.left = `${randX}px`;
   popup.style.top = `${randY}px`;
+
   popup.style.transform = "translate(0, 0)";
 
   document.body.appendChild(popup);
@@ -185,7 +203,7 @@ function showQuizModal() {
     .join("");
 
   modal.innerHTML = `
-    <div class="modal-content">
+    <div id="modal-quiz" class="modal-content">
       <p>${questionObj.question}</p>
       <div class="opts-quiz">
         ${opts}
@@ -240,8 +258,8 @@ function handleResposta(acertou) {
   } else {
     if (window._tentativa === 1) {
       window._tentativa++;
-      gerarPopUpMalicioso();
       showQuizModal();
+      gerarPopUpMalicioso();
     } else {
       score -= 0.5;
       updateCarbon(10);
