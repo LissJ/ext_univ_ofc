@@ -5,39 +5,6 @@ const emailList = document.getElementById("emailList");
 
 let score = 0;
 
-let questions = [
-  {
-    question: "Qual destas práticas ajuda a reduzir a pegada de carbono digital?",
-    options: [
-      "Desligar o computador quando não estiver usando",
-      "Deixar vídeos em autoplay",
-      "Manter 50 abas abertas",
-      "Assistir vídeos em 4K no celular"
-    ],
-    correct: 0
-  },
-  {
-    question: "Qual prática melhora a segurança no mundo digital?",
-    options: [
-      "Usar a mesma senha em todos os sites",
-      "Compartilhar senhas por e-mail",
-      "Ativar autenticação de dois fatores",
-      "Desligar o antivírus"
-    ],
-    correct: 2
-  },
-  {
-    question: "Qual ação reduz o impacto ambiental de e-mails?",
-    options: [
-      "Enviar e-mails com anexos grandes",
-      "Excluir e-mails antigos regularmente",
-      "Manter lixo eletrônico cheio",
-      "Enviar mensagens para todos os contatos sempre"
-    ],
-    correct: 1
-  }
-];
-
 const maliciousGifs = [
   "./assets/gifs/hack1.gif",
 ];
@@ -163,6 +130,7 @@ function shuffleArray(arr) {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
 }
+
 shuffleArray(emailQueue);
 
 let emailIndex = 0;
@@ -203,13 +171,18 @@ const modal = document.createElement("div");
 modal.className = "quiz-modal";
 
 function showQuizModal() {
-  if (!questions.length) return console.error('Perguntas não disponíveis');
+  if (!questions.length) {
+    return console.error('Perguntas não disponíveis');
+  }
 
   const questionObj = questions[Math.floor(Math.random() * questions.length)];
 
-  const opts = questionObj.options.map((opt, idx) =>
-    `<button data-index="${idx}">${opt}</button>`
-  ).join("");
+  let opts = questionObj.options
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
+    .map((option) => `<button data-index="${option.id}">${option.text}</button>`)
+    .join("");
 
   modal.innerHTML = `
     <div class="modal-content">
@@ -225,11 +198,12 @@ function showQuizModal() {
       const selected = parseInt(btn.getAttribute('data-index'), 10);
       const correct = questionObj.correct;
 
-      modal.querySelectorAll('button').forEach((b, idx) => {
-        if (idx === correct) {
+      modal.querySelectorAll('button').forEach((b) => {
+        let dataIndexSelected = parseInt(b.getAttribute('data-index'), 10)
+        if (dataIndexSelected === correct) {
           b.style.backgroundColor = "green";
           b.style.color = "white";
-        } else if (idx === selected) {
+        } else if (dataIndexSelected === selected) {
           b.style.backgroundColor = "red";
           b.style.color = "white";
         }
