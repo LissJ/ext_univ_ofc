@@ -296,7 +296,7 @@ a {
     flex-direction: column;
 }
 
-.opts-quiz > button {
+.modal-content > button, .actions > button, .opts-quiz > button {
     margin-top: 5px;
     margin-bottom: 5px;
 
@@ -419,11 +419,6 @@ a {
         flex-direction: column;
     }
 
-.modal-content > button, .actions > button, .opts-quiz > button {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
     .sidebar {
         position: fixed;
         top: 0;
@@ -452,10 +447,14 @@ a {
         height: 36px;
     }
 
+    .menu-toggle {
+        display: block;
+    }
+}
+
 .modal-content > button:hover, .actions > button:hover, .opts-quiz > button:hover {
     background-color: #c6e6fe;
 }
-
 
 .email-detail {
       padding: 24px;
@@ -552,3 +551,7 @@ a {
       max-width: 90%;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
+    .menu-item .item-menu {
+        display: inline-block;
+    }
+
