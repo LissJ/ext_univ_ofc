@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smail | Saiba Mais</title>
-    <link rel="stylesheet" href="../sidebar.css">
+    <!-- <link rel="stylesheet" href="css/sidebar.css"> -->
+    <link rel="stylesheet" href="css/saiba.css">
 </head>
+
 <body>
     <div class="app-container">
+        <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">
+            ☰
+        </button>
         <!-- Sidebar estilo Gmail -->
         <aside class="sidebar">
             <div class="logo">
-                <img class="leaf" src="../assets/leaf_icon.png" alt="">
+                <img class="leaf" src="./assets/leaf_icon.png" alt="">
                 <span>Smail</span>
             </div>
             <nav class="menu">
                 <a href="index.html">
                     <button class="menu-item active">
                         <span class="icon">
-                            <img src="../assets/inbox.png" alt="Inbox Icon" width="16" height="16">
+                            <img src="./assets/inbox.png" alt="Inbox Icon" width="16" height="16">
                         </span>
                         <span class="item-menu" data-i18n="inbox">Inbox</span>
                     </button>
@@ -27,7 +33,7 @@
                 <a href="pratique.html">
                     <button class="menu-item">
                         <span class="icon">
-                            <img src="../assets/practice.png" alt="Pratique Icon" width="16" height="16">
+                            <img src="./assets/practice.png" alt="Pratique Icon" width="16" height="16">
                         </span>
                         <span class="item-menu" data-i18n="practice">Pratique!</span>
                     </button>
@@ -36,27 +42,72 @@
                 <a href="saiba.html">
                     <button class="menu-item">
                         <span class="icon">
-                            <img src="../assets/know_more.png" alt="Learn More Icon" width="17" height="17">
+                            <img src="./assets/know_more.png" alt="Learn More Icon" width="17" height="17">
                         </span>
                         <span class="item-menu" data-i18n="learnMore">Saiba mais</span>
                     </button>
                 </a>
-
-                <button class="menu-item">
-                    <span class="icon">
-                        <img src="../assets/language.png" alt="Idioma Icon" width="16" height="16">
-                    </span>
-                    <span class="item-menu" data-i18n="language">Idioma</span>
-                </button>
-
-                <button class="menu-item">
-                    <span class="icon">
-                        <img src="../assets/dark_light_mode.png" alt="Tema Icon" width="16" height="16">
-                    </span>
-                    <span class="item-menu" data-i18n="theme">Tema</span>
-                </button>
             </nav>
         </aside>
+        <main class="main-content">
+
+            <section class="info-section">
+                <h2>O que é o Smail?</h2>
+                <p>O <strong>Smail</strong> é um projeto criado para te ajudar a navegar com mais segurança no mundo
+                    digital. Aqui, você aprende a identificar e-mails falsos de um jeito interativo e divertido, como se
+                    estivesse usando um e-mail de verdade. Nosso objetivo é te preparar para os perigos online sem te
+                    assustar — só te deixar mais esperto!</p>
+            </section>
+
+            <section class="info-section">
+                <h2>Phishing? O que é isso?</h2>
+                <p>Sabe quando chega um e-mail dizendo que seu banco precisa da sua senha com urgência? Ou que você
+                    ganhou
+                    um prêmio, mas tem que clicar num link meio estranho? Isso é <strong>phishing</strong> — uma
+                    armadilha
+                    pra te enganar e roubar seus dados.</p>
+                <p>Esses e-mails são feitos para parecer reais, mas têm detalhes suspeitos. Aqui no Smail, você treina o
+                    olhar para esses golpes e aprende a se proteger de forma prática.</p>
+            </section>
+
+            <section class="info-section">
+                <h2>Limpa Brasil: cuidando do nosso mundo</h2>
+                <p>O <strong>Limpa Brasil</strong> é um movimento lindo que convida todo mundo a colocar a mão na massa
+                    e
+                    cuidar do nosso planeta. Sabe aquele lixo que fica jogado na rua ou nas praças? O projeto mobiliza
+                    pessoas para limpar essas áreas e repensar o nosso jeito de viver.</p>
+                <p>Mais do que recolher lixo, é sobre transformar mentalidades e incentivar a cidadania. O Smail
+                    acredita
+                    nisso também: limpar a internet de ameaças é tão importante quanto cuidar do nosso mundo físico.</p>
+            </section>
+
+            <section class="info-section">
+                <h2>Mas e a pegada de carbono digital?</h2>
+                <p>Sim, a internet também polui. Toda vez que você envia um e-mail, assiste a um vídeo ou armazena
+                    arquivos
+                    na nuvem, há consumo de energia — e isso gera CO₂. Esse impacto se chama <strong>pegada de carbono
+                        digital</strong>.</p>
+                <p>Por isso criamos a <strong>barra de carbono</strong> aqui no Smail: ela mostra de forma simbólica
+                    como
+                    nossas ações digitais também têm consequências para o meio ambiente. A ideia não é parar de usar a
+                    internet, mas usá-la de forma mais consciente.</p>
+            </section>
+
+            <section class="info-section">
+                <h2>Como você pode fazer a diferença</h2>
+                <ul>
+                    <li>Desconfie de e-mails urgentes demais ou com links estranhos.</li>
+                    <li>Fale com seus amigos e familiares sobre golpes online.</li>
+                    <li>Apague e-mails antigos e desnecessários — isso ajuda o planeta!</li>
+                    <li>Participe de ações como o Limpa Brasil na sua cidade.</li>
+                </ul>
+                <p>Cada pequena atitude conta. No digital ou no mundo real, você pode ser parte da mudança. 💚</p>
+            </section>
+        </main>
     </div>
+
+
+
 </body>
+
 </html>
