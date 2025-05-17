@@ -159,11 +159,7 @@ function showQuizInSection() {
 
     const quizHTML = `
         <div class="question-card fade-in">
-            <div class="quiz-header">
-                <strong>Quiz Smail - ${capitalize(selectedDifficulty)}</strong>
-                <p class="question-number">PERGUNTA ${currentIndex + 1}</p>
-            </div>
-            <div class="question-text">${data.question}</div>
+            <div class="question-text">${currentIndex + 1} - ${data.question}</div>
             <div class="answer-options">
                 ${data.options.map((opt, i) => `
                     <button onclick="handleQuizAnswer(${i}, ${question.correct}, this)">

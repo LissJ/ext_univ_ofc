@@ -200,7 +200,6 @@ body {
     cursor: pointer;
 }
 
-
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .app-container {
