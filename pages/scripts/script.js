@@ -147,19 +147,22 @@ function reiniciarJogo() {
 }
 
 function gerarPopUpMalicioso() {
+  let popup = document.getElementById("popup");
+
   let modalQuiz = document.getElementById("modal-quiz");
+
+  if (!modalQuiz) {
+    return;
+  }
+
   const rect = modalQuiz.getBoundingClientRect();
 
   let popupSize = 200;
 
-  const popup = document.createElement("div");
-  popup.className = "popup";
-  const gif = document.createElement("img");
-
+  const gif = document.getElementById("gif");
   const randomIndex = Math.floor(Math.random() * maliciousGifs.length);
 
   gif.src = maliciousGifs[randomIndex];
-  popup.appendChild(gif);
 
   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
   const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
@@ -181,9 +184,11 @@ function gerarPopUpMalicioso() {
   popup.style.top = `${randY}px`;
 
   popup.style.transform = "translate(0, 0)";
-
-  document.body.appendChild(popup);
 }
+
+setInterval(() => {
+  gerarPopUpMalicioso()
+}, 5000)
 
 const modal = document.createElement("div");
 modal.className = "quiz-modal";
@@ -233,10 +238,8 @@ function showQuizModal() {
       } else {
         updateCarbon(-5);
 
-        const popups = document.querySelectorAll(".popup");
-        if (popups.length > 0) {
-          popups[0].remove();
-        }
+        const popup = document.getElementById("popup");
+        popup.style.display = 'none';
       }
 
       setTimeout(() => {
@@ -247,6 +250,8 @@ function showQuizModal() {
   });
 
   document.body.appendChild(modal);
+
+  document.getElementById("popup").style.display = 'block';
 }
 
 // 3) handleResposta com pontuação
