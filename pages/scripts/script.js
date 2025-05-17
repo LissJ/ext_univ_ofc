@@ -214,7 +214,9 @@ function showQuizModal() {
   modal.innerHTML = `
     <div class="modal-content">
       <p>${questionObj.question}</p>
-      ${opts}
+      <div class="opts-quiz">
+        ${opts}
+      <div>
     </div>
   `;
 
