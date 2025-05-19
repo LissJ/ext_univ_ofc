@@ -120,6 +120,8 @@ function showQuizModal() {
 
             if (selected !== correct) {
                 updateCarbon(5);
+                modal.remove();
+                showEndModal();
             } else {
                 updateCarbon(-5);
 
