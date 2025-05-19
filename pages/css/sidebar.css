@@ -33,12 +33,18 @@ body {
 
 /* Sidebar */
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
     width: 260px;
     background: #E8F4FE;
     border-right: 1px solid var(--blue-line);
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 }
+
 
 .logo {
     display: flex;
