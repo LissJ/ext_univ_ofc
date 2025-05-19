@@ -81,6 +81,18 @@
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
+    .main-content {
+        height: max-content;
+        padding: 55px 30px;
+        font-family: var(--font-regular);
+        color: #333;
+        background-color: #fff;
+        max-width: 1300px;
+        /* margin-left: 17rem; */
+        /* margin-bottom: 50px; */
+        margin: 0 auto;
+    }
+
     .app-container {
         flex-direction: column;
     }
