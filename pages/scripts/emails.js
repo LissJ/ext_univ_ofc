@@ -284,11 +284,12 @@ function reportPhishing(email, idEmail, emailType) {
 
         let email = emailQueue.find(x => x.id == phishingEmailType)
         if (email.isSafe) {
-            handleResposta(!email.isSafe); // invertido aqui
+            handleResposta(false); // invertido aqui
         } else {
             alert("Phishing reportado com sucesso!");
+            handleResposta(true)
             modalReport.remove();
-            nextEmail();  // Vai para o próximo e-mail após o reporte.
+            // nextEmail();  // Vai para o próximo e-mail após o reporte.
         }
     });
 

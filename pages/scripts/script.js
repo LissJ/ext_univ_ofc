@@ -6,7 +6,7 @@ const emailList = document.getElementById("emailList");
 let score = 0;
 
 const maliciousGifs = [
-  "./assets/gifs/hack1.gif",
+    "./assets/gifs/hack1.gif",
 ];
 
 let gameEnded = false;
