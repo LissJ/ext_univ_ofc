@@ -16,7 +16,7 @@ body {
 /* Estilos específicos para o modo prática */
 
 .main-content {
-    margin-left: 13.5%;
+    margin-left: 16rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
