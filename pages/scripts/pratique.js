@@ -2,10 +2,10 @@
 let selectedDifficulty = 'easy';
 const currentLanguage = 'pt';
 
-let shownQuestions = {
-    easy: [],
-    medium: [],
-    hard: []
+let questionIndexes = {
+    easy: 0,
+    medium: 0,
+    hard: 0
 };
 
 const questions = [
@@ -141,7 +141,7 @@ const questions = [
             ]
         }
     },
-
+    
     // MÉDIAS
     {
         difficulty: 'medium',
@@ -261,7 +261,7 @@ const questions = [
             ]
         }
     },
-
+    
 
     // DIFÍCEIS
     {
@@ -382,7 +382,7 @@ const questions = [
             ]
         }
     },
-
+    
 ];
 
 // Escuta os botões
@@ -408,43 +408,38 @@ function highlightSelectedButton(difficulty) {
 function showDifficultyQuiz(difficulty) {
     selectedDifficulty = difficulty;
     highlightSelectedButton(difficulty);
-    resetCarbonMeter();
-    shownQuestions[selectedDifficulty] = []; // Reinicia as perguntas sorteadas
+    resetCarbonMeter(); // 🔄 Reseta a barra de carbono ao mudar de dificuldade
+    questionIndexes[selectedDifficulty] = 0; // 🔄 Reinicia o progresso
     showQuizInSection();
 }
+
 
 function showQuizInSection() {
     const quizArea = document.getElementById("quizContainer");
     const filteredQuestions = questions.filter(q => q.difficulty === selectedDifficulty);
 
-    const available = filteredQuestions.filter((q, idx) => !shownQuestions[selectedDifficulty].includes(idx));
+    if (filteredQuestions.length === 0) {
+        quizArea.innerHTML = `<p>Nenhuma pergunta disponível para esta dificuldade.</p>`;
+        return;
+    }
 
-    if (available.length === 0) {
+    const currentIndex = questionIndexes[selectedDifficulty];
+
+    if (currentIndex >= filteredQuestions.length) {
         quizArea.innerHTML = `<p>🎉 Você completou todas as perguntas dessa dificuldade!</p>`;
         return;
     }
 
-    // Sorteia pergunta ainda não exibida
-    const randIndex = Math.floor(Math.random() * available.length);
-    const question = available[randIndex];
-    const originalIndex = filteredQuestions.indexOf(question);
-    shownQuestions[selectedDifficulty].push(originalIndex); // Marca como exibida
-
+    const question = filteredQuestions[currentIndex];
     const data = question[currentLanguage];
-
-    // Embaralha alternativas
     const letra = ["A", "B", "C", "D"];
-    const optionIndexes = [0, 1, 2, 3];
-    const shuffledIndexes = optionIndexes.sort(() => Math.random() - 0.5);
-    const shuffledOptions = shuffledIndexes.map(i => data.options[i]);
-    const newCorrectIndex = shuffledIndexes.indexOf(question.correct); // novo índice da resposta correta
 
     const quizHTML = `
         <div class="question-card fade-in">
-            <div class="question-text">${shownQuestions[selectedDifficulty].length} - ${data.question}</div>
+            <div class="question-text">${currentIndex + 1} - ${data.question}</div>
             <div class="answer-options">
-                ${shuffledOptions.map((opt, i) => `
-                    <button onclick="handleQuizAnswer(${i}, ${newCorrectIndex}, this)">
+                ${data.options.map((opt, i) => `
+                    <button onclick="handleQuizAnswer(${i}, ${question.correct}, this)">
                         <span class="option-letter">${letra[i]}</span>
                         <span class="option-text">${opt}</span>
                     </button>
@@ -453,13 +448,18 @@ function showQuizInSection() {
         </div>
     `;
 
-    // Transição visual
+    // Faz fade-out antes de trocar o conteúdo
     quizArea.classList.add("fade-out");
+
     setTimeout(() => {
         quizArea.innerHTML = quizHTML;
         quizArea.classList.remove("fade-out");
         quizArea.classList.add("fade-in");
-        setTimeout(() => quizArea.classList.remove("fade-in"), 300);
+
+        // Remove fade-in depois que animação terminar
+        setTimeout(() => {
+            quizArea.classList.remove("fade-in");
+        }, 300);
     }, 300);
 }
 
@@ -472,15 +472,19 @@ function handleQuizAnswer(selected, correct, btn) {
         if (b === btn && i !== correct) b.classList.add("wrong");
     });
 
-    const perdeu = updateCarbonMeter(selected === correct ? -10 : 20);
-    if (perdeu) return; // 🛑 Não continua se perdeu
+    // Altera a barra de carbono
+    if (selected === correct) {
+        updateCarbonMeter(-10);
+    } else {
+        updateCarbonMeter(20);
+    }
 
+    // Avança para a próxima pergunta depois de 1 segundo
     setTimeout(() => {
         questionIndexes[selectedDifficulty]++;
         showQuizInSection();
     }, 1000);
 }
-
 function capitalize(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -495,16 +499,9 @@ function updateCarbonMeter(change) {
     if (carbonLevel >= 100) {
         setTimeout(() => {
             alert("Você perdeu! 🌱 Tente novamente.");
-            questionIndexes[selectedDifficulty] = 0; // Reinicia o índice manualmente
-            showQuizInSection(); // Mostra a primeira pergunta novamente
-            resetCarbonMeter(); // Reseta a barra
         }, 300);
-        return true; // <- Indica que o jogador perdeu
     }
-
-    return false;
 }
-
 
 function resetCarbonMeter() {
     carbonLevel = 0;
